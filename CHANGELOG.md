@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.0.6] - 2025-05-16
+- Fixed all references to the upstream project. It should now work correctly (register the NativeModule Grpc)
+
 ## [0.0.5] - 2025-05-16
 - Seems that removing the NativeModules export breaked it (NativeModules had no Grpc key in it)
 
