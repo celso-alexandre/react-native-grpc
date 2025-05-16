@@ -126,7 +126,6 @@ export type GrpcType = {
   destroyClient(id: number): void;
   unaryCall(
     callId: number,
-    clientId: number,
     path: string,
     obj: GrpcRequestObject,
     requestHeaders?: GrpcMetadata

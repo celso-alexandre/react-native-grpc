@@ -13,19 +13,12 @@ import { NativeEventEmitter } from 'react-native';
 import { GrpcUnaryCall } from './unary';
 import AbortController from 'abort-controller';
 
-let clientId = 1;
-function getClientId(): number {
-  return clientId++;
-}
-
 export class GrpcClient {
-  private clientId: number;
   private grpcNativeClient: GrpcType;
   private grpcEmitter: NativeEventEmitter;
   private deferredMap: DeferredCallMap = new Map<number, DeferredCalls>();
   private requestId = 1;
   constructor(grpcNativeClient: GrpcType) {
-    this.clientId = getClientId();
     this.grpcNativeClient = grpcNativeClient;
     this.grpcEmitter = new NativeEventEmitter(this.grpcNativeClient as any);
     this.grpcEmitter.addListener('grpc-call', this.handleGrpcEvent);
@@ -86,7 +79,7 @@ export class GrpcClient {
     const obj: GrpcRequestObject = {
       data: requestData,
     };
-    this.grpcNativeClient.unaryCall(id, this.clientId, method, obj, {});
+    this.grpcNativeClient.unaryCall(id, method, obj, {});
     const call = new GrpcUnaryCall(
       method,
       data,

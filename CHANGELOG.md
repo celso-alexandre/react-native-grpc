@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.0.3] - 2025-05-16
+- It should now work in expo
+
 ## [0.0.2] - 2025-05-16 - 2025-05-16
 
 ### Added
