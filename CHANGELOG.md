@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.0.4] - 2025-05-16
+- Improved README.md
+
 ## [0.0.3] - 2025-05-16
 - It should now work in expo
 
