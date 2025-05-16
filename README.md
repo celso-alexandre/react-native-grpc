@@ -2,16 +2,20 @@
 
 gRPC for react-native
 
+## Note
+This is a direct fork of [@Mitch528/rect-native-grpc](https://github.com/Mitch528/react-native-grpc), go an try out his work first, as it is more feature complete.
+I'm not doing serious changes, don't 100% know what I'm doing either; I'm just trying to make the typescript wrapper work in my new expo app.
+
 ## Installation
 
 ```sh
-npm install @mitch528/react-native-grpc
+npm install @celsoalexandre/react-native-grpc
 ```
 
 ## Usage
 
 ```ts
-import { GrpcClient, GrpcMetadata } from '@mitch528/react-native-grpc';
+import { GrpcClient, GrpcMetadata } from '@celsoalexandre/react-native-grpc';
 
 GrpcClient.setHost('example.com');
 

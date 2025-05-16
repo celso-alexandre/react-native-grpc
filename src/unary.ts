@@ -1,5 +1,4 @@
-import { AbortController } from 'abort-controller';
-import type { CompletedGrpcUnaryCall, GrpcMetadata } from './types';
+import { CompletedGrpcUnaryCall, GrpcMetadata } from './types';
 
 export class GrpcUnaryCall implements PromiseLike<CompletedGrpcUnaryCall> {
   readonly method: string;
