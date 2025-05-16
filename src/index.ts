@@ -1,3 +1,5 @@
+import { NativeModules } from 'react-native';
+export const { Grpc } = NativeModules as { Grpc: GrpcType };
 import { fromByteArray, toByteArray } from 'base64-js';
 import {
   DeferredCallMap,
@@ -14,13 +16,11 @@ import { GrpcUnaryCall } from './unary';
 import AbortController from 'abort-controller';
 
 export class GrpcClient {
-  private grpcNativeClient: GrpcType;
   private grpcEmitter: NativeEventEmitter;
   private deferredMap: DeferredCallMap = new Map<number, DeferredCalls>();
   private requestId = 1;
-  constructor(grpcNativeClient: GrpcType) {
-    this.grpcNativeClient = grpcNativeClient;
-    this.grpcEmitter = new NativeEventEmitter(this.grpcNativeClient as any);
+  constructor() {
+    this.grpcEmitter = new NativeEventEmitter(Grpc as any);
     this.grpcEmitter.addListener('grpc-call', this.handleGrpcEvent);
   }
 
@@ -63,7 +63,7 @@ export class GrpcClient {
     const id = this.getId();
     const abort = new AbortController();
     abort.signal.addEventListener('abort', () => {
-      this.grpcNativeClient.cancelGrpcCall(id);
+      Grpc.cancelGrpcCall(id);
     });
     const response = createDeferred<Uint8Array>(abort.signal);
     const headers = createDeferred<GrpcMetadata>(abort.signal);
@@ -79,7 +79,7 @@ export class GrpcClient {
     const obj: GrpcRequestObject = {
       data: requestData,
     };
-    this.grpcNativeClient.unaryCall(id, method, obj, {});
+    Grpc.unaryCall(id, method, obj, {});
     const call = new GrpcUnaryCall(
       method,
       data,

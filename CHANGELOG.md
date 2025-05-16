@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.0.5] - 2025-05-16
+- Seems that removing the NativeModules export breaked it (NativeModules had no Grpc key in it)
+
 ## [0.0.4] - 2025-05-16
 - Improved README.md
 
